@@ -1,4 +1,4 @@
-lib{toml11}: hxx{toml}
+lib{toml11}: hxx{toml toml/*}
 
 # Export options.
 #
