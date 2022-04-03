@@ -11,8 +11,8 @@ numbers = [1,2,3]
 time    = 1979-05-27T07:32:00Z)";
         ifs.close();
         const auto data      = toml::parse("sample.toml");
-        const auto answer    = toml::find<std::int64_t    >(data, "answer");
-        const auto pi        = toml::find<double          >(data, "pi");
+        const auto answer    = toml::find<std::int64_t>(data, "answer");
+        const auto pi        = toml::find<double>(data, "pi");
         const auto numbers   = toml::find<std::vector<int>>(data, "numbers");
         const auto timepoint = toml::find<std::chrono::system_clock::time_point>(data, "time");
         assert(answer == 42);

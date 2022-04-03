@@ -1,3 +1,8 @@
 import libs = toml11%lib{toml11}
 
 exe{driver}: {hxx ixx txx cxx}{**} $libs
+
+if ($cxx.class == 'gcc')
+{
+    cxx.coptions += -Wno-unused-variable
+}
