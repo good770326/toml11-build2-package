@@ -22,7 +22,7 @@ time    = 1979-05-27T07:32:00Z)";
         assert(std::chrono::duration_cast<std::chrono::minutes>(timepoint.time_since_epoch()).count() % 60 == 32);
         assert(std::chrono::duration_cast<std::chrono::hours>(timepoint.time_since_epoch()).count() % 24 == 7);
     }
-    catch(std::runtime_error e) {
+    catch(std::runtime_error const& e) {
         std::cout << e.what() << '\n';
     }
     return 0;

@@ -1,7 +1,9 @@
 libs =
 import libs += libboost-test%lib{boost_test}
 import libs += toml11%lib{toml11}
-include ./
+
+# tests includes
+libs += hxx{**}
 
 ./: exe{check}: cxx{check} $libs
 ./: exe{check_serialization}: cxx{check_serialization} $libs
