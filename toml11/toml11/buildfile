@@ -5,7 +5,6 @@ lib{toml11}: hxx{toml toml/*}
 lib{toml11}:
 {
   # just include <toml.hpp> or <toml/*.hpp> to use
-  # cxx.export.poptions = "-I$src_base" "-I$src_base/toml"
   cxx.export.poptions = "-I$src_base"
 }
 
@@ -23,6 +22,6 @@ else
 #
 {hxx ixx txx}{*}:
 {
-  install         = include/toml11/
+  install         = include/
   install.subdirs = true
 }
