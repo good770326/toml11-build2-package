@@ -4,7 +4,9 @@ lib{toml11}: hxx{toml toml/*}
 #
 lib{toml11}:
 {
-  cxx.export.poptions = "-I$src_base" # just include <toml.hpp> or <toml/*.hpp> to use
+  # just include <toml.hpp> or <toml/*.hpp> to use
+  # cxx.export.poptions = "-I$src_base" "-I$src_base/toml"
+  cxx.export.poptions = "-I$src_base"
 }
 
 # For pre-releases use the complete version to make sure they cannot be used
