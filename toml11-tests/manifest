@@ -1,6 +1,6 @@
 : 1
 name: toml11-tests
-version: 3.7.1+1
+version: 3.7.1
 project: toml11
 summary: tests executable of toml11 library
 license: MIT
