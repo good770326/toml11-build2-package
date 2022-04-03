@@ -1,0 +1,11 @@
+: 1
+name: toml11-tests
+version: 3.7.1
+project: toml11
+summary: tests executable of toml11 library
+license: MIT
+description-file: README.md
+url: https://github.com/ToruNiina/toml11
+depends: * build2 >= 0.14.0
+depends: * bpkg >= 0.14.0
+depends: libboost-test

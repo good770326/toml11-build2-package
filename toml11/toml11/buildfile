@@ -1,0 +1,26 @@
+lib{toml11}: hxx{toml}
+
+# Export options.
+#
+lib{toml11}:
+{
+  cxx.export.poptions = "-I$src_base" # just include <toml.hpp> or <toml/*.hpp> to use
+}
+
+# For pre-releases use the complete version to make sure they cannot be used
+# in place of another pre-release or the final version. See the version module
+# for details on the version.* variable values.
+#
+if $version.pre_release
+  lib{toml11}: bin.lib.version = "-$version.project_id"
+else
+  lib{toml11}: bin.lib.version = "-$version.major.$version.minor"
+
+# Install into the toml11/ subdirectory of, say, /usr/include/
+# recreating subdirectories.
+#
+{hxx ixx txx}{*}:
+{
+  install         = include/toml11/
+  install.subdirs = true
+}

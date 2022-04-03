@@ -1,0 +1,65 @@
+libs =
+import libs += libboost-test%lib{boost_test}
+import libs += toml11%lib{toml11}
+include ./
+
+./: exe{check}: cxx{check} $libs
+./: exe{check_serialization}: cxx{check_serialization} $libs
+./: exe{check_toml_test}: cxx{check_toml_test} $libs
+./: exe{test_comments}: cxx{test_comments} $libs
+./: exe{test_datetime}: cxx{test_datetime} $libs
+./: exe{test_error_detection}: cxx{test_error_detection} $libs
+./: exe{test_expect}: cxx{test_expect} $libs
+./: exe{test_find}: cxx{test_find} $libs
+./: exe{test_find_or}: cxx{test_find_or} $libs
+./: exe{test_find_or_recursive}: cxx{test_find_or_recursive} $libs
+./: exe{test_format_error}: cxx{test_format_error} $libs
+./: exe{test_get}: cxx{test_get} $libs
+./: exe{test_get_or}: cxx{test_get_or} $libs
+./: exe{test_lex_boolean}: cxx{test_lex_boolean} $libs
+./: exe{test_lex_datetime}: cxx{test_lex_datetime} $libs
+./: exe{test_lex_floating}: cxx{test_lex_floating} $libs
+./: exe{test_lex_integer}: cxx{test_lex_integer} $libs
+./: exe{test_lex_key_comment}: cxx{test_lex_key_comment} $libs
+./: exe{test_lex_string}: cxx{test_lex_string} $libs
+./: exe{test_literals}: cxx{test_literals} $libs
+./: exe{test_multiple_translation_unit}: cxx{test_multiple_translation_unit_1 test_multiple_translation_unit_2} $libs
+./: exe{test_parse_array}: cxx{test_parse_array} $libs
+./: exe{test_parse_boolean}: cxx{test_parse_boolean} $libs
+./: exe{test_parse_datetime}: cxx{test_parse_datetime} $libs
+./: exe{test_parse_file}: cxx{test_parse_file} $libs
+./: exe{test_parse_floating}: cxx{test_parse_floating} $libs
+./: exe{test_parse_inline_table}: cxx{test_parse_inline_table} $libs
+./: exe{test_parse_integer}: cxx{test_parse_integer} $libs
+./: exe{test_parse_key}: cxx{test_parse_key} $libs
+./: exe{test_parse_string}: cxx{test_parse_string} $libs
+./: exe{test_parse_table}: cxx{test_parse_table} $libs
+./: exe{test_parse_table_key}: cxx{test_parse_table_key} $libs
+./: exe{test_parse_unicode}: cxx{test_parse_unicode} $libs
+./: exe{test_result}: cxx{test_result} $libs
+./: exe{test_serialize_file}: cxx{test_serialize_file} $libs
+./: exe{test_string}: cxx{test_string} $libs
+./: exe{test_traits}: cxx{test_traits} $libs
+./: exe{test_utility}: cxx{test_utility} $libs
+./: exe{test_value}: cxx{test_value} $libs
+
+if ($cxx.system == 'windows')
+{
+    ./: exe{test_windows}: cxx{test_windows} $libs
+}
+
+# ban warnings:
+# BOOST_TEST_NO_LIB macro redefinition
+# TOML11_ARGS_SIZE_IMPL not enough parameters 
+if ($cxx.class == 'msvc')
+{
+    cxx.coptions += /wd4005
+    cxx.coptions += /wd4003
+}
+else
+{
+    cxx.poptions += -Wno-macro-redefined
+
+    # Why this test always failed with msvc but succeed with clang++?
+    ./: exe{test_extended_conversions}: cxx{test_extended_conversions} $libs
+}
