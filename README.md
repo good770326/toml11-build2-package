@@ -1,3 +1,5 @@
+note: this is a repackage for build2 [build2](https://www.build2.org/)
+
 toml11
 ======
 
