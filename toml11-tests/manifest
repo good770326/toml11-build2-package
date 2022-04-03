@@ -6,6 +6,7 @@ summary: tests executable of toml11 library
 license: MIT
 description-file: README.md
 url: https://github.com/ToruNiina/toml11
+email: niina.toru.68u@gmail.com
 depends: * build2 >= 0.14.0
 depends: * bpkg >= 0.14.0
 depends: libboost-test
